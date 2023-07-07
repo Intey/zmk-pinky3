@@ -70,7 +70,7 @@
 		#binding-cells = <0>;
         wait-ms = <0>;
 		bindings
-			= <&macro_press &mo NAV &kp LS(GUI)>,
+			= <&macro_press &mo NAV &kp LS(GUI)>
             , <&macro_pause_for_release>
             , <&macro_release &mo 1 &kp LSHFT>;
 		};
