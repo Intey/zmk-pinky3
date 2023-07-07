@@ -102,6 +102,7 @@
         td3: tap_dance_3 {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_3"; 
+            #binding-cells = <0>; 
             tapping-term-ms = <TAP_SPEED>; 
             bindings = <&kp SLASH>, <&kp QMARK>;
             }; 
