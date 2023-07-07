@@ -287,7 +287,6 @@
     keymap {
         compatible = "zmk,keymap";
         default_layer {
-            label = 
 // -----------------------------------------------------------------------------------------
 // |       | TAB:ESC  | ; : | , < | . > |  P  |  Y  |         | F   |  G   |  C  |  R  |  L  | BKSP |     |
 // |       | CTRL     |  A  |  O  |  E  |  U  |  I  |         |  D  |  H   |  T  |  N  |  S  |  DEL |     |  
