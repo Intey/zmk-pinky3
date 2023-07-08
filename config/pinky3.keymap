@@ -70,6 +70,54 @@
                 <&macro_release>,
                 <&mo 0 &kp LSHFT>;
         };
+        awesome_left_tag: awesome_left_tag {
+            compatible = "zmk,behavior-macro";
+            label = "AWESOME_LEFT_TAG";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp LEFT_ARROW>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
+        };
+        awesome_left_win: awesome_left_win {
+            compatible = "zmk,behavior-macro";
+            label = "AWESOME_LEFT_WIN";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp J>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
+        };
+        awesome_right_win: awesome_right_win {
+            compatible = "zmk,behavior-macro";
+            label = "AWESOME_RIGHT_WIN";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp K>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
+        };
+        awesome_right_tag: awesome_right_tag {
+            compatible = "zmk,behavior-macro";
+            label = "AWESOME_RIGHT_TAG";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
+        };
     };
 
     behaviors {
@@ -111,10 +159,10 @@
 
         nav {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
+&trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp LEFT   &kp DOWN     &kp UP  &kp RIGHT  &trans
+&trans  &awesome_left_tag  &awesome_left_win  &awesome_right_win  &awesome_right_tag  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans
+                                                          &trans              &trans  &trans  &trans  &trans  &trans    &trans     &trans
             >;
 
             label = "navigation";
