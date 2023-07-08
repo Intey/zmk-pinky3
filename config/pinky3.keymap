@@ -5,57 +5,7 @@
 #define NAV 1
 #define NUM 2
 
-// TAP_DANCE settings
-
 #define TAP_SPEED 200
-
-// MACROS to make the the code easier to read
-// include name or reference in keymap
-// Format: 
-//      name        reference  key1 key2 
-
-#define TD_TAB      &td0    // TAB ESC
-#define TD_SPC      &td2    // SPACE ENTER
-#define TD_SLSH     &td3    // SLASH QMARK
-#define TD_QUOTE    &td4    // QUOTE DOUBLE_QUOTES
-#define TD_EQL      &td5    // EQUAL PLUS
-#define TD_BSLS     &td6    // BACKSLASH PIPE
-#define TD_MINUS    &td7    // MINUS UNDERSCORE
-#define TD_SCLN     &td8    // SEMICOLON COLON
-#define TD_COMM     &td9    // COMMA LESS_THAN
-#define TD_DOT      &td10   // PERIOD GREATER_THAN
-#define TD_BACKF    &td11   // GRAVE TILDE
-#define TD_ARR      &td13   // Q AT (@)
-#define TD_ATCAT    &td14   // AT CARET
-#define TD_TAW      &td15   // TAB LWIN
-#define TD_AWE      &tdawesome   // GUI GUI+SHIFT
-#define SF_DEL      &mt LSHIFT DEL
-#define ALT_TAB     &mt LALT TAB
-#define LCTL_SPS    &mt LCTRL SPACE
-#define RCTL_SPS    &mt RCTRL SPACE
-
-// include &name in keymap to use
-// FORMAT
-//   natural --> (on shift)
-//   number --> symbols | number code --> symbol code 
-// one_lpar    1 --> (  | N1 --> LPAR
-// two_par     2 --> )  | N2 --> RPAR
-// three_rbrc  3 --> }  | N3 --> RBRC
-// four_pl     4 --> ]  | N4 --> PLUS
-// five_lbrc   5 --> {  | N5 --> RSFT
-// six_rbkt    6 --> ]  | N6 --> RBKT
-// seven_lbkt  7 --> [  | N7 --> LBKT
-// eight_exlm  8 --> !  | N8 --> EXCL
-// nine_equal  9 --> =  | N9 --> EQUAL
-// zero_s      0 --> *  | N0 --> STAR
-/*
-// Sticky key config if desired
-&sk {
-    //release-after-ms = <2000>;
-    quick-release;
-};
-
-*/
 
 / {
     macros {
@@ -147,8 +97,46 @@
                 <&kp GRAVE>,
                 <&triple_grave>;
         };
+        l_brac: l_brac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "L_BRAC";
+            bindings =
+                <&kp LEFT_BRACE>,
+                <&kp LEFT_BRACKET>;
 
-        // create the shifts of dvorak   
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        r_bra: r_bra {
+            compatible = "zmk,behavior-mod-morph";
+            label = "R_BRA";
+            bindings =
+                <&kp RIGHT_BRACE>,
+                <&kp RIGHT_BRACKET>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        com_para: com_para {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COM_PARA";
+            bindings =
+                <&kp COMMA>,
+                <&kp LEFT_PARENTHESIS>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        dot_para: dot_para {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOT_PARA";
+            bindings =
+                <&kp DOT>,
+                <&kp RIGHT_PARENTHESIS>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     // LAYERS
@@ -165,10 +153,10 @@
 
         base {
             bindings = <
- &kp ESC  &quote_double  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
-&kp FSLH          &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH       &kp SEMI      &kp Q    &kp J           &kp K         &kp X       &tild_home          &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
-                                      &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
+ &kp ESC  &quote_double  &com_para  &dot_para           &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH          &kp A      &kp O      &kp E           &kp U         &kp I          &l_brac            &r_bra  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH       &kp SEMI      &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                        &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE   &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
             label = "base";
@@ -176,7 +164,7 @@
 
         nav {
             bindings = <
-&trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
+&trans             &trans  &kp LS(PAGE_DOWN)   &kp LS(PAGE_DOWN)              &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
 &trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp LEFT   &kp DOWN     &kp UP  &kp RIGHT  &trans
 &trans  &awesome_left_tag  &awesome_left_win  &awesome_right_win  &awesome_right_tag  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans
                                                           &trans              &trans  &trans  &trans  &trans  &trans    &trans     &trans
