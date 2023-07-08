@@ -61,15 +61,14 @@
     macros {
         awesome: awesome_macro {
             compatible = "zmk,behavior-macro";
-            label = "AWESOME_WIN_TAG";
             #binding-cells = <0>;
             wait-ms = <0>;
             bindings =
                 <&macro_press>,
-                <&mo 0 &kp LS(LGUI)>,
+                <&mo 2 &kp LS(LGUI)>,
                 <&macro_pause_for_release>,
                 <&macro_release>,
-                <&mo 0 &kp LSHFT>;
+                <&mo 2 &kp LS(LEFT_GUI)>;
         };
         awesome_left_tag: awesome_left_tag {
             compatible = "zmk,behavior-macro";
