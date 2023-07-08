@@ -100,10 +100,10 @@
 
         base {
             bindings = <
- &kp ESC  &kp SEMI  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE       &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
-&kp FSLH     &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE       &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH   &kp SQT      &kp Q    &kp J           &kp K         &kp X        &kp GRAVE          &kp RET       &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
-                                 &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &tdawesome  &tdawesome  &kp RSHIFT
+ &kp ESC  &kp SEMI  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH     &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH   &kp SQT      &kp Q    &kp J           &kp K         &kp X        &kp GRAVE          &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                 &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
             label = "base";
@@ -122,10 +122,10 @@
 
         num {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp F1   &kp F2   &kp F3   &kp F4  &trans  &trans  &trans  &trans   &kp N1     &kp N2     &kp N3     &kp N4        &kp N5
+&trans  &kp F5   &kp F6   &kp F7   &kp F8  &trans  &trans  &trans  &trans   &kp N6     &kp N7     &kp N8     &kp N9        &kp N0
+&trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans  &trans  &trans  &trans  &kp DOT  &kp COMMA  &kp MINUS  &kp EQUAL  &kp LS(PLUS)
+                          &trans   &trans  &trans  &trans  &trans  &trans   &trans     &trans
             >;
 
             label = "numbers";
