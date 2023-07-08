@@ -6,25 +6,27 @@
 #define NUM 2
 
 // TAP_DANCE settings
+
 #define TAP_SPEED 200
 
 // MACROS to make the the code easier to read
 // include name or reference in keymap
 // Format: 
 //      name        reference  key1 key2 
+
 #define TD_TAB      &td0    // TAB ESC
-#define TD_SPC      &td2    // SPACE ENTER 
+#define TD_SPC      &td2    // SPACE ENTER
 #define TD_SLSH     &td3    // SLASH QMARK
 #define TD_QUOTE    &td4    // QUOTE DOUBLE_QUOTES
 #define TD_EQL      &td5    // EQUAL PLUS
-#define TD_BSLS     &td6    // BACKSLASH PIPE 
+#define TD_BSLS     &td6    // BACKSLASH PIPE
 #define TD_MINUS    &td7    // MINUS UNDERSCORE
-#define TD_SCLN     &td8    // SEMICOLON COLON 
-#define TD_COMM     &td9    // COMMA LESS_THAN 
-#define TD_DOT      &td10   // PERIOD GREATER_THAN 
+#define TD_SCLN     &td8    // SEMICOLON COLON
+#define TD_COMM     &td9    // COMMA LESS_THAN
+#define TD_DOT      &td10   // PERIOD GREATER_THAN
 #define TD_BACKF    &td11   // GRAVE TILDE
 #define TD_ARR      &td13   // Q AT (@)
-#define TD_ATCAT    &td14   // AT CARET 
+#define TD_ATCAT    &td14   // AT CARET
 #define TD_TAW      &td15   // TAB LWIN
 #define TD_AWE      &tdawesome   // GUI GUI+SHIFT
 #define SF_DEL      &mt LSHIFT DEL
@@ -46,7 +48,6 @@
 // eight_exlm  8 --> !  | N8 --> EXCL
 // nine_equal  9 --> =  | N9 --> EQUAL
 // zero_s      0 --> *  | N0 --> STAR
-
 /*
 // Sticky key config if desired
 &sk {
@@ -57,205 +58,32 @@
 */
 
 / {
-
-	macros {
+    macros {
         awesome: awesome_macro {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <0>;
-            bindings
-                = <&macro_press &mo NAV &kp LS(LGUI)>
-                , <&macro_pause_for_release>
-                , <&macro_release &mo NAV &kp LSHFT>;
-            };
+            bindings =
+                <&macro_press>,
+                <&mo 0 &kp LS(LGUI)>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&mo 0 &kp LSHFT>;
         };
+    };
 
-    behaviors{  
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_0"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp TAB>, <&kp ESC>;
-
-            }; 
-        td2: tap_dance_2 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_2"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp SPACE>, <&kp ENTER>;
-            }; 
-        td3: tap_dance_3 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_3"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp SLASH>, <&kp QMARK>;
-            }; 
-        td4: tap_dance_4 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_4"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp SINGLE_QUOTE>, <&kp DOUBLE_QUOTES>;
-            }; 
-        td5: tap_dance_5 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_5"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp EQUAL>, <&kp PLUS>;
-            }; 
-        td6: tap_dance_6 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_6"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp BACKSLASH>, <&kp PIPE>;
-            }; 
-        td7: tap_dance_7 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_7"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp MINUS>, <&kp UNDERSCORE>;
-            }; 
-        td8: tap_dance_8 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_8"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp SEMICOLON>, <&kp COLON>;
-            }; 
-        td9: tap_dance_9 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_9"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp COMMA>, <&kp LESS_THAN>;
-            }; 
-        td10: tap_dance_10 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_10"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp PERIOD>, <&kp GREATER_THAN>;
-            }; 
-        td11: tap_dance_11 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_11"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp TILDE>, <&kp TILDE &kp SLASH>, <&kp GRAVE>;
-            };            
-
-        td12: tap_dance_12 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_12"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp LALT>, <&kp LGUI>;
-            };
-        td13: tap_dance_13 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_13"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp Q>, <&kp AT>;
-            };
-        td14: tap_dance_14 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_14"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp AT>, <&kp CARET>;
-            };
-        td15: tap_dance_15 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_15"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp TAB>, <&kp LWIN>;
-            };
+    behaviors {
         tdawesome: tap_dance_awesome {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_MOD_TAP";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
-            bindings = <&awesome>, <&kp LGUI>;
+            bindings =
+                <&awesome>,
+                <&kp LGUI>;
         };
-        // create the shifts of dvorak 
-        seven_lbkt: seven_lbkt{ 
-                compatible = "zmk,behavior-mod-morph";
-                label="SEVEN_LBKT";
-                #binding-cells = <0>;
-                bindings = <&kp N7>, <&kp LBKT>;  
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-            }; 
-        five_lbrc: five_lbrc {
-                compatible = "zmk,behavior-mod-morph";
-                label="FIVE_LBRC";
-                #binding-cells = <0>; 
-                bindings = <&kp N5>,<&kp LBRC>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        three_rbrc: three_rbrc {
-                compatible = "zmk,behavior-mod-morph";
-                label="THREE_RBRC";
-                #binding-cells = <0>; 
-                bindings = <&kp N3>,<&kp RBRC>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        one_lpar: one_lpar {
-                compatible = "zmk,behavior-mod-morph";
-                label="ONE_LPAR";
-                #binding-cells = <0>; 
-                bindings = <&kp N1>,<&kp LPAR>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        nine_equal: nine_equal {
-                compatible = "zmk,behavior-mod-morph";
-                label="nine_equal";
-                #binding-cells = <0>; 
-                bindings = <&kp N9>,    <&kp EQUAL>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        zero_s: zero_star { 
-                compatible = "zmk,behavior-mod-morph";
-                label="ZERO_STAR";
-                #binding-cells = <0>;
-                bindings = <&kp N0>, <&kp STAR>;  
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-            }; 
-        two_par: two_paren {
-                compatible = "zmk,behavior-mod-morph";
-                label="TWO_PAR";
-                #binding-cells = <0>; 
-                bindings = <&kp N2>,<&kp RPAR>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        four_pl: four_plus {
-                compatible = "zmk,behavior-mod-morph";
-                label="FOUR_PLUS";
-                #binding-cells = <0>; 
-                bindings = <&kp N4>,<&kp PLUS>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        six_rbkt: six_rbkt {
-                compatible = "zmk,behavior-mod-morph";
-                label="six_rbkt";
-                #binding-cells = <0>; 
-                bindings = <&kp N6>,<&kp RBKT>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
-        eight_exlm: eight_exlm {
-                compatible = "zmk,behavior-mod-morph";
-                label="EIGHT_EXLM";
-                #binding-cells = <0>; 
-                bindings = <&kp N8>,    <&kp EXCL>;
-                mods=<(MOD_LSFT|MOD_RSFT)>;
-        };
+
+        // create the shifts of dvorak   
     };
 
     // LAYERS
@@ -266,41 +94,41 @@
     //         then-layer = <3>;
     //     };
     // };
+
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-                    bindings = <
+        base {
+            bindings = <
+ &kp ESC  &kp SEMI  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE       &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH     &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE       &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH   &kp SQT      &kp Q    &kp J           &kp K         &kp X        &kp GRAVE          &kp RET       &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                 &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &tdawesome  &tdawesome  &kp RSHIFT
+            >;
 
-  &kp ESC    TD_QUOTE &kp COMMA &kp DOT  &kp P    &kp Y   &kp LPAR      &kp RPAR  &kp F    &kp G  &kp C      &kp R       &kp L    &kp EQUAL
-  &kp SLASH  &kp A    &kp O     &kp E    &kp U    &kp I   &kp LBRC      &kp RBRC  &kp D    &kp H  &kp T      &kp N       &kp S    &kp MINUS
-  TD_BSLS    &kp SCLN TD_ARR    &kp J    &kp K    &kp X   TD_BACKF      &kp ENTER &kp B    &kp M  &kp W      &kp V       &kp Z    &kp BACKSPACE
-                                &mo NAV  SF_DEL   ALT_TAB LCTL_SPS      RCTL_SPS  &mo NUM  TD_AWE &kp LSHIFT
-
-                        >;
-                };
-
-        nav_layer {
-                bindings = <
-
-  &kp ESC    TD_SCLN  TD_COMM TD_DOT   &kp P    &kp Y   &kp LPAR        &kp F    &kp G  &kp C      &kp R       &kp L    &kp BSPC &kp BSPC
-  &kp SLASH  &kp A    &kp O   &kp E    &kp U    &kp I   &kp LBRC        &kp D    &kp H  &kp T      &kp N       &kp S    &kp DEL  &kp DEL
-  TD_BSLS    TD_QUOTE TD_ARR  &kp J    &kp K    &kp X   TD_BACKF        &kp B    &kp M  &kp W      &kp V       &kp Z    TD_TAW   TD_TAW
-                              &mo NAV  SF_DEL   ALT_TAB LCTL_SPS        RCTL_SPS &mo NUM  TD_AWE &kp LSHIFT
-
-                >;
+            label = "base";
         };
-        nums_layer {
-                bindings = <
 
-  &kp ESC    &kp SCLN &kp COMMA &kp DOT  &kp P    &kp Y   &kp LPAR      &kp RPAR  &kp N1   &kp N1 &kp N3     &kp R       &kp L    &kp EQUAL
-  &kp SLASH  &kp A    &kp O     &kp E    &kp U    &kp I   &kp LBRC      &kp RBRC  &kp D    &kp H  &kp T      &kp N       &kp S    &kp MINUS
-  TD_BSLS    TD_QUOTE TD_ARR    &kp J    &kp K    &kp X   TD_BACKF      &kp ENTER &kp B    &kp M  &kp W      &kp V       &kp Z    &kp BACKSPACE
-                                &mo NAV  SF_DEL   ALT_TAB LCTL_SPS      RCTL_SPS  &mo NUM  TD_AWE &kp LSHIFT
+        nav {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
 
-                        >;
-                };
-        
+            label = "navigation";
+        };
+
+        num {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+
+            label = "numbers";
+        };
     };
-    
 };
