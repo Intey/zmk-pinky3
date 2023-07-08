@@ -61,6 +61,7 @@
     macros {
         awesome: awesome_macro {
             compatible = "zmk,behavior-macro";
+            label = "AWESOME_WIN_TAG";
             #binding-cells = <0>;
             wait-ms = <0>;
             bindings =
@@ -90,7 +91,7 @@
                 <&macro_press>,
                 <&kp LEFT_GUI>,
                 <&macro_tap>,
-                <&kp J>,
+                <&kp K>,
                 <&macro_release>,
                 <&kp LEFT_GUI>;
         };
@@ -102,7 +103,7 @@
                 <&macro_press>,
                 <&kp LEFT_GUI>,
                 <&macro_tap>,
-                <&kp K>,
+                <&kp J>,
                 <&macro_release>,
                 <&kp LEFT_GUI>;
         };
@@ -118,6 +119,18 @@
                 <&macro_release>,
                 <&kp LEFT_GUI>;
         };
+        triple_grave: triple_grave {
+            compatible = "zmk,behavior-macro";
+            label = "TRIPLE_GRAVE";
+            #binding-cells = <0>;
+            bindings = <&kp GRAVE &kp GRAVE &kp GRAVE>;
+        };
+        homepath: homepath {
+            compatible = "zmk,behavior-macro";
+            label = "HOMEPATH";
+            #binding-cells = <0>;
+            bindings = <&kp TILDE &kp SLASH>;
+        };
     };
 
     behaviors {
@@ -129,6 +142,24 @@
             bindings =
                 <&awesome>,
                 <&kp LGUI>;
+        };
+        quote_double: quote_double {
+            compatible = "zmk,behavior-tap-dance";
+            label = "QUOTE_DOUBLE";
+            #binding-cells = <0>;
+            bindings =
+                <&kp SINGLE_QUOTE>,
+                <&kp DOUBLE_QUOTES>;
+        };
+        tild_home: tild_home {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TILD_HOME";
+            #binding-cells = <0>;
+            bindings =
+                <&kp TILDE>,
+                <&homepath>,
+                <&kp GRAVE>,
+                <&triple_grave>;
         };
 
         // create the shifts of dvorak   
@@ -148,10 +179,10 @@
 
         base {
             bindings = <
- &kp ESC  &kp SEMI  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
-&kp FSLH     &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH   &kp SQT      &kp Q    &kp J           &kp K         &kp X        &kp GRAVE          &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
-                                 &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
+ &kp ESC  &quote_double  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH          &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH       &kp SEMI      &kp Q    &kp J           &kp K         &kp X       &tild_home          &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                      &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
             label = "base";
