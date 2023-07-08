@@ -61,6 +61,7 @@
     macros {
         awesome: awesome_macro {
             compatible = "zmk,behavior-macro";
+            label = "AWESOME_WIN_TAG";
             #binding-cells = <0>;
             wait-ms = <0>;
             bindings =
