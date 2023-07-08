@@ -66,10 +66,10 @@
             wait-ms = <0>;
             bindings =
                 <&macro_press>,
-                <&mo 2 &kp LS(LGUI)>,
+                <&mo 2 &kp LGUI>,
                 <&macro_pause_for_release>,
                 <&macro_release>,
-                <&mo 2 &kp LS(LEFT_GUI)>;
+                <&mo 2 &kp LEFT_GUI>;
         };
         awesome_left_tag: awesome_left_tag {
             compatible = "zmk,behavior-macro";
