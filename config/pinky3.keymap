@@ -161,6 +161,46 @@
                 <&kp GRAVE>,
                 <&triple_grave>;
         };
+        l_brac: l_brac {
+            compatible = "zmk,behavior-mod-morph";
+            label = "L_BRAC";
+            bindings =
+                <&kp LEFT_BRACE>,
+                <&kp LEFT_BRACKET>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        r_bra: r_bra {
+            compatible = "zmk,behavior-mod-morph";
+            label = "R_BRA";
+            bindings =
+                <&kp RIGHT_BRACE>,
+                <&kp RIGHT_BRACKET>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        com_para: com_para {
+            compatible = "zmk,behavior-mod-morph";
+            label = "COM_PARA";
+            bindings =
+                <&kp COMMA>,
+                <&kp LEFT_PARENTHESIS>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        dot_para: dot_para {
+            compatible = "zmk,behavior-mod-morph";
+            label = "DOT_PARA";
+            bindings =
+                <&kp DOT>,
+                <&kp RIGHT_PARENTHESIS>;
+
+            #binding-cells = <0>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
 
         // create the shifts of dvorak   
     };
@@ -179,10 +219,10 @@
 
         base {
             bindings = <
- &kp ESC  &quote_double  &kp COMMA  &kp DOT           &kp P         &kp Y        &kp SPACE        &kp SPACE  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
-&kp FSLH          &kp A      &kp O    &kp E           &kp U         &kp I        &kp SPACE        &kp SPACE  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH       &kp SEMI      &kp Q    &kp J           &kp K         &kp X       &tild_home          &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
-                                      &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE  &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
+ &kp ESC  &quote_double  &com_para  &dot_para           &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH          &kp A      &kp O      &kp E           &kp U         &kp I          &l_brac            &r_bra  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH       &kp SEMI      &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                        &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE   &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
             label = "base";
@@ -190,7 +230,7 @@
 
         nav {
             bindings = <
-&trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
+&trans             &trans  &kp LS(PAGE_DOWN)   &kp LS(PAGE_DOWN)              &trans  &trans  &trans  &trans  &trans  &kp HOME  &kp PG_DN  &kp PG_UP    &kp END  &trans
 &trans             &trans             &trans              &trans              &trans  &trans  &trans  &trans  &trans  &kp LEFT   &kp DOWN     &kp UP  &kp RIGHT  &trans
 &trans  &awesome_left_tag  &awesome_left_win  &awesome_right_win  &awesome_right_tag  &trans  &trans  &trans  &trans    &trans     &trans     &trans     &trans  &trans
                                                           &trans              &trans  &trans  &trans  &trans  &trans    &trans     &trans
