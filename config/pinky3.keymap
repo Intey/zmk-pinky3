@@ -1,4 +1,4 @@
-#include <behaviors.dtsi>
+#include <behavios.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
 #define BASE 0
@@ -13,7 +13,6 @@
 // Format: 
 //      name        reference  key1 key2 
 #define TD_TAB      &td0    // TAB ESC
-#define TD_CAPLOCK  &td1    // LSHIFT CAPSLOCK 
 #define TD_SPC      &td2    // SPACE ENTER 
 #define TD_SLSH     &td3    // SLASH QMARK
 #define TD_QUOTE    &td4    // QUOTE DOUBLE_QUOTES
@@ -24,12 +23,10 @@
 #define TD_COMM     &td9    // COMMA LESS_THAN 
 #define TD_DOT      &td10   // PERIOD GREATER_THAN 
 #define TD_BACKF    &td11   // GRAVE TILDE
-#define TD_ALT      &td12   // LALT GUI
 #define TD_ARR      &td13   // Q AT (@)
 #define TD_ATCAT    &td14   // AT CARET 
 #define TD_TAW      &td15   // TAB LWIN
-#define TD_SCLOCK   &td16   // (S)LSHIFT CAPSLOCK (Sticky shift)
-#define TD_AWE      &td17   // GUI GUI+SHIFT
+#define TD_AWE      &tdawesome   // GUI GUI+SHIFT
 #define SF_DEL      &mt LSHIFT DEL
 #define ALT_TAB     &mt LALT TAB
 #define LCTL_SPS    &mt LCTRL SPACE
@@ -62,17 +59,16 @@
 / {
 
 	macros {
-	awesome: awesome {
-		label = "awesome_macro";
-		compatible = "zmk,behavior-macro";
-		#binding-cells = <0>;
-        wait-ms = <0>;
-		bindings
-			= <&macro_press &mo NAV &kp LS(GUI)>
-            , <&macro_pause_for_release>
-            , <&macro_release &mo NAV &kp LSHFT>;
-		};
-    };
+        awesome: awesome_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <0>;
+            bindings
+                = <&macro_press &mo NAV &kp LS(LGUI)>
+                , <&macro_pause_for_release>
+                , <&macro_release &mo NAV &kp LSHFT>;
+            };
+        };
 
     behaviors{  
         td0: tap_dance_0 {
@@ -82,13 +78,6 @@
             tapping-term-ms = <TAP_SPEED>; 
             bindings = <&kp TAB>, <&kp ESC>;
 
-            }; 
-        td1: tap_dance_1 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_1"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp LSHIFT>, <&kp CAPSLOCK>;
             }; 
         td2: tap_dance_2 {
             compatible = "zmk,behavior-tap-dance";
@@ -158,7 +147,7 @@
             label = "TAP_DANCE_11"; 
             #binding-cells = <0>; 
             tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp GRAVE>, <&kp TILDE>;
+            bindings = <&kp TILDE>, <&kp TILDE &kp SLASH>, <&kp GRAVE>;
             };            
 
         td12: tap_dance_12 {
@@ -166,7 +155,7 @@
             label = "TAP_DANCE_12"; 
             #binding-cells = <0>; 
             tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&kp LALT>, <&kp GUI>;
+            bindings = <&kp LALT>, <&kp LGUI>;
             };
         td13: tap_dance_13 {
             compatible = "zmk,behavior-tap-dance";
@@ -189,19 +178,12 @@
             tapping-term-ms = <TAP_SPEED>; 
             bindings = <&kp TAB>, <&kp LWIN>;
             };
-        td16: tap_dance_16 {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_16"; 
-            #binding-cells = <0>; 
-            tapping-term-ms = <TAP_SPEED>; 
-            bindings = <&sk LSHIFT>, <&kp CAPSLOCK>;
-            }; 
-        td17: tap_dance_17 {
+        tdawesome: tap_dance_awesome {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_MOD_TAP";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
-            bindings = <&awesome>, <&kp GUI>;
+            bindings = <&awesome>, <&kp LGUI>;
         };
         // create the shifts of dvorak 
         seven_lbkt: seven_lbkt{ 
@@ -286,32 +268,39 @@
     // };
     keymap {
         compatible = "zmk,keymap";
+
         default_layer {
-// -----------------------------------------------------------------------------------------
-// |       | TAB:ESC  | ; : | , < | . > |  P  |  Y  |         | F   |  G   |  C  |  R  |  L  | BKSP |     |
-// |       | CTRL     |  A  |  O  |  E  |  U  |  I  |         |  D  |  H   |  T  |  N  |  S  |  DEL |     |  
-// |       | LSFT:CAP |' "  | q @ | J   | K   |  X  |         |  B  |  M   |  W  |  V  |  Z  | TAB  |     |
-//                          |     | GUI | LWR | SPC |         | ENT | RSE  | ALT |     |
                     bindings = <
-  &kp ESC    &kp SCLN &kp COMMA &kp DOT  &kp P    &kp Y   &kp LPAR               &kp RPAR  &kp F    &kp G  &kp C      &kp R       &kp L    &kp EQUAL
-  &kp SLASH  &kp A    &kp O     &kp E    &kp U    &kp I   &kp LBRC               &kp RBRC  &kp D    &kp H  &kp T      &kp N       &kp S    &kp MINUS
-  TD_BSLS    TD_QUOTE TD_ARR    &kp J    &kp K    &kp X   TD_BACKF               &kp ENTER &kp B    &kp M  &kp W      &kp V       &kp Z    &kp BACKSPACE
-                                &mo NAV  SF_DEL   ALT_TAB LCTL_SPS               RCTL_SPS  &mo NUM  TD_AWE &kp LSHIFT
+
+  &kp ESC    TD_QUOTE &kp COMMA &kp DOT  &kp P    &kp Y   &kp LPAR      &kp RPAR  &kp F    &kp G  &kp C      &kp R       &kp L    &kp EQUAL
+  &kp SLASH  &kp A    &kp O     &kp E    &kp U    &kp I   &kp LBRC      &kp RBRC  &kp D    &kp H  &kp T      &kp N       &kp S    &kp MINUS
+  TD_BSLS    &kp SCLN TD_ARR    &kp J    &kp K    &kp X   TD_BACKF      &kp ENTER &kp B    &kp M  &kp W      &kp V       &kp Z    &kp BACKSPACE
+                                &mo NAV  SF_DEL   ALT_TAB LCTL_SPS      RCTL_SPS  &mo NUM  TD_AWE &kp LSHIFT
+
                         >;
                 };
 
-// -----------------------------------------------------------------------------------------
-// |       | TAB:ESC  | ; : | , < | . > |  P  |  Y  |         | F   |  G   |  C  |  R  |  L  | BKSP |     |
-// |       | CTRL     |  A  |  O  |  E  |  U  |  I  |         |  D  |  H   |  T  |  N  |  S  |  DEL |     |  
-// |       | LSFT:CAP |' "  | q @ | J   | K   |  X  |         |  B  |  M   |  W  |  V  |  Z  | TAB  |     |
-//                          |     | GUI | LWR | SPC |         | ENT | RSE  | ALT |     |
         nav_layer {
                 bindings = <
-  &kp ESC    TD_SCLN  TD_COMM TD_DOT   &kp P    &kp Y   &kp LPAR               &kp F    &kp G  &kp C      &kp R       &kp L    &kp BSPC &kp BSPC
-  &kp SLASH  &kp A    &kp O   &kp E    &kp U    &kp I   &kp LBRC               &kp D    &kp H  &kp T      &kp N       &kp S    &kp DEL  &kp DEL
-  TD_BSLS    TD_QUOTE TD_ARR  &kp J    &kp K    &kp X   TD_BACKF               &kp B    &kp M  &kp W      &kp V       &kp Z    TD_TAW   TD_TAW
-                              &mo NAV  SF_DEL   ALT_TAB LCTL_SPS               RCTL_SPS &mo NUM  TD_AWE &kp LSHIFT
+
+  &kp ESC    TD_SCLN  TD_COMM TD_DOT   &kp P    &kp Y   &kp LPAR        &kp F    &kp G  &kp C      &kp R       &kp L    &kp BSPC &kp BSPC
+  &kp SLASH  &kp A    &kp O   &kp E    &kp U    &kp I   &kp LBRC        &kp D    &kp H  &kp T      &kp N       &kp S    &kp DEL  &kp DEL
+  TD_BSLS    TD_QUOTE TD_ARR  &kp J    &kp K    &kp X   TD_BACKF        &kp B    &kp M  &kp W      &kp V       &kp Z    TD_TAW   TD_TAW
+                              &mo NAV  SF_DEL   ALT_TAB LCTL_SPS        RCTL_SPS &mo NUM  TD_AWE &kp LSHIFT
+
                 >;
         };
+        nums_layer {
+                bindings = <
+
+  &kp ESC    &kp SCLN &kp COMMA &kp DOT  &kp P    &kp Y   &kp LPAR      &kp RPAR  &kp N1   &kp N1 &kp N3     &kp R       &kp L    &kp EQUAL
+  &kp SLASH  &kp A    &kp O     &kp E    &kp U    &kp I   &kp LBRC      &kp RBRC  &kp D    &kp H  &kp T      &kp N       &kp S    &kp MINUS
+  TD_BSLS    TD_QUOTE TD_ARR    &kp J    &kp K    &kp X   TD_BACKF      &kp ENTER &kp B    &kp M  &kp W      &kp V       &kp Z    &kp BACKSPACE
+                                &mo NAV  SF_DEL   ALT_TAB LCTL_SPS      RCTL_SPS  &mo NUM  TD_AWE &kp LSHIFT
+
+                        >;
+                };
+        
     };
+    
 };
