@@ -10,11 +10,11 @@
 
 / {
     macros {
-        awesome: awesome_macro {
+        awesome_tags: awesome_tags_macro {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_WIN_TAG";
             #binding-cells = <0>;
-            wait-ms = <0>;
+            wait-ms = <30>;
             bindings =
                 <&macro_press &mo 2 &kp LGUI>,
                 <&macro_pause_for_release>,
@@ -65,8 +65,11 @@
         homepath: homepath {
             compatible = "zmk,behavior-macro";
             label = "HOMEPATH";
+            wait-ms = <40>;
+            tap-ms = <40>;
             #binding-cells = <0>;
-            bindings = <&kp TILDE &kp SLASH>;
+            bindings = <&kp TILDE>,
+                       <&kp SLASH>;
         };
     };
 
@@ -76,9 +79,8 @@
             label = "TAP_DANCE_MOD_TAP";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
-            bindings =
-                <&awesome>,
-                <&kp LGUI>;
+            bindings = <&kp LCTRL>,
+                       <&kp LGUI>;
         };
         tild_home: tild_home {
             compatible = "zmk,behavior-tap-dance";
