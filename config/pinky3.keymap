@@ -4,6 +4,7 @@
 #define BASE 0
 #define NAV 1
 #define NUM 2
+#define QUOT SINGLE_QUOTE
 
 #define TAP_SPEED 200
 
@@ -77,15 +78,7 @@
             tapping-term-ms = <100>;
             bindings =
                 <&awesome>,
-                <&mt LGUI SPACE>;
-        };
-        quote_double: quote_double {
-            compatible = "zmk,behavior-tap-dance";
-            label = "QUOTE_DOUBLE";
-            #binding-cells = <0>;
-            bindings =
-                <&kp SINGLE_QUOTE>,
-                <&kp DOUBLE_QUOTES>;
+                <&kp LGUI>;
         };
         tild_home: tild_home {
             compatible = "zmk,behavior-tap-dance";
@@ -153,9 +146,9 @@
 
         base {
             bindings = <
- &kp ESC  &quote_double  &com_para  &dot_para           &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+ &kp ESC          &kp QUOT   &com_para  &dot_para       &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
 &kp FSLH          &kp A      &kp O      &kp E           &kp U         &kp I          &l_brac            &r_bra  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH       &kp SEMI      &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+&kp BSLH          &kp SEMI   &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
                                         &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE   &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
