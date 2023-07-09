@@ -5,56 +5,69 @@
 #define NAV 1
 #define NUM 2
 #define QUOT SINGLE_QUOTE
-
 #define TAP_SPEED 200
 
 / {
     macros {
-        awesome_tags: awesome_tags_macro {
+        awesome: awesome_macro {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_WIN_TAG";
             #binding-cells = <0>;
-            wait-ms = <30>;
+            wait-ms = <0>;
             bindings =
-                <&macro_press &mo 2 &kp LGUI>,
+                <&macro_press>,
+                <&mo 2 &kp LGUI>,
                 <&macro_pause_for_release>,
-                <&macro_release &mo 2 &kp LGUI>;
+                <&macro_release>,
+                <&mo 2 &kp LGUI>;
         };
         awesome_left_tag: awesome_left_tag {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_LEFT_TAG";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp LEFT_GUI>,
-                <&macro_tap &kp LEFT_ARROW>,
-                <&macro_release &kp LEFT_GUI>;
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp LEFT_ARROW>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
         };
         awesome_left_win: awesome_left_win {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_LEFT_WIN";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp LEFT_GUI>,
-                <&macro_tap &kp K>,
-                <&macro_release &kp LEFT_GUI>;
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp K>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
         };
         awesome_right_win: awesome_right_win {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_RIGHT_WIN";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp LEFT_GUI>,
-                <&macro_tap &kp J>,
-                <&macro_release &kp LEFT_GUI>;
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp J>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
         };
         awesome_right_tag: awesome_right_tag {
             compatible = "zmk,behavior-macro";
             label = "AWESOME_RIGHT_TAG";
             #binding-cells = <0>;
             bindings =
-                <&macro_press &kp LEFT_GUI>,
-                <&macro_tap &kp RIGHT>,
-                <&macro_release &kp LEFT_GUI>;
+                <&macro_press>,
+                <&kp LEFT_GUI>,
+                <&macro_tap>,
+                <&kp RIGHT>,
+                <&macro_release>,
+                <&kp LEFT_GUI>;
         };
         triple_grave: triple_grave {
             compatible = "zmk,behavior-macro";
@@ -65,11 +78,8 @@
         homepath: homepath {
             compatible = "zmk,behavior-macro";
             label = "HOMEPATH";
-            wait-ms = <40>;
-            tap-ms = <40>;
             #binding-cells = <0>;
-            bindings = <&kp TILDE>,
-                       <&kp SLASH>;
+            bindings = <&kp TILDE &kp SLASH>;
         };
     };
 
@@ -79,8 +89,9 @@
             label = "TAP_DANCE_MOD_TAP";
             #binding-cells = <0>;
             tapping-term-ms = <100>;
-            bindings = <&kp LCTRL>,
-                       <&kp LGUI>;
+            bindings =
+                <&awesome>,
+                <&kp LGUI>;
         };
         tild_home: tild_home {
             compatible = "zmk,behavior-tap-dance";
@@ -143,15 +154,24 @@
     //     };
     // };
 
+    combos {
+        compatible = "zmk,combos";
+
+        new_combo {
+            bindings = <&kp CAPSLOCK>;
+            key-positions = <35 34>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base {
             bindings = <
- &kp ESC          &kp QUOT   &com_para  &dot_para       &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
-&kp FSLH          &kp A      &kp O      &kp E           &kp U         &kp I          &l_brac            &r_bra  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
-&kp BSLH          &kp SEMI   &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
-                                        &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE   &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
+ &kp ESC  &kp QUOT  &com_para  &dot_para           &kp P         &kp Y           &kp LT  &kp GREATER_THAN  &kp F       &kp G       &kp C  &kp R  &kp L  &kp EQUAL
+&kp FSLH     &kp A      &kp O      &kp E           &kp U         &kp I          &l_brac            &r_bra  &kp D       &kp H       &kp T  &kp N  &kp S  &kp MINUS
+&kp BSLH  &kp SEMI      &kp Q      &kp J           &kp K         &kp X       &tild_home           &kp RET  &kp B       &kp M       &kp W  &kp V  &kp Z   &kp BSPC
+                                   &mo 1  &mt LSHIFT DEL  &mt LALT TAB  &mt LCTRL SPACE   &mt RCTRL SPACE  &mo 2  &tdawesome  &kp RSHIFT
             >;
 
             label = "base";
