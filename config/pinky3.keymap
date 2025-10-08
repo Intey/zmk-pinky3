@@ -13,6 +13,20 @@
 };
 
 / {
+    combos {
+        compatible = "zmk,combos";
+        combo_parenl {
+            timeout-ms = <50>;
+            key-positions = <23 24>;
+            bindings = <&kp LS(N9)>;
+        };
+        combo_parenr {
+            timeout-ms = <50>;
+            key-positions = <25 26>;
+            bindings = <&kp LS(N0)>;
+        };
+    };
+
     macros {
         awesome_left_tag: awesome_left_tag {
             compatible = "zmk,behavior-macro";
@@ -182,10 +196,10 @@
 
         nav {
             bindings = <
-&trans         &trans               &kp LS(PAGE_DOWN)       &kp LS(PAGE_DOWN)         &trans                &trans    &tog GAME /**/  &bt BT_SEL 0  &trans    &kp HOME    &kp PG_DN    &kp PG_UP    &kp END      &kp CAPSLOCK
-&shift_caps    &trans               &awesome_move_screen    &awesome_switch_screen    &trans                &trans    &trans    /**/  &bt BT_NXT  &trans    &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT    &trans
-&trans         &awesome_left_tag    &awesome_left_win       &awesome_right_win        &awesome_right_tag    &trans    &trans    /**/  &bt BT_PRV  &trans    &trans      &trans       &trans       &trans       &trans
-                                                            &trans                    &trans                &trans    &trans    /**/  &trans      &trans    &trans      &trans
+&trans         &trans               &kp LS(PAGE_DOWN)       &kp LS(PAGE_DOWN)         &trans                &trans    &tog GAME /**/  &bt BT_SEL 0  &bt BT_CLR    &kp HOME    &kp PG_DN    &kp PG_UP    &kp END      &kp CAPSLOCK
+&shift_caps    &trans               &awesome_move_screen    &awesome_switch_screen    &trans                &trans    &trans    /**/  &bt BT_NXT    &trans        &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT    &trans
+&trans         &awesome_left_tag    &awesome_left_win       &awesome_right_win        &awesome_right_tag    &trans    &trans    /**/  &bt BT_PRV    &trans        &trans      &trans       &trans       &trans       &bt BT_CLR_ALL
+                                                            &trans                    &trans                &trans    &trans    /**/  &trans        &trans        &trans      &trans
             >;
 
             label = "navigation";
